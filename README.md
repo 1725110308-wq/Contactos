@@ -58,3 +58,5 @@ lista de ejercicios con web.py
 |NO.|Ejercicios|Descripcion|
 |--|--|--|
 |1|Hola_mundo|hola mundo de web.py|
+
+maso menos
