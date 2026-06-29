@@ -1,26 +1,38 @@
 import web
 import sqlite3
-render=web.template.render('views')
-class ListaContactos():
-    def conectar(self):
+
+render = web.template.render('views', base='layout')
+
+class ListaContactos:
+
+    def obtenerContactos(self):
         try:
-            conexion=sqlite3.connect("sql/agenda.sqlite")
-            conexion.row_factory=sqlite3.row
-            return conexion
-        except Exception as error:
-            print(f"error 100:{error.args}")
-        return None
-    def ListaContactos(self):
-        try:
-            conexion=self.conectar()
-            cursor=conexion.cursor()
-            sql="SELECT * FROM contacto"
+            conexion = sqlite3.connect("sql/agenda.sqlite")
+            conexion.row_factory = sqlite3.Row
+            cursor = conexion.cursor()
+            sql = "SELECT * FROM contacto;"
             cursor.execute(sql)
-            contactos=cursor.fetchall()
-            return contactos
+            resultado = cursor.fetchall()
+
+            datos = []
+            for fila in resultado:
+                contacto = {
+                    "id_contacto":fila[0],
+                    "nombre":fila[1],
+                    "primer_apellido":fila[2],
+                    "segundo_apellido":fila[3],
+                    "email":fila[4],
+                    "telefono":fila[5]
+                }
+                datos.append(contacto)
+
+            conexion.close()
+            print(datos)
+            return datos
         except Exception as error:
-            print(f"error 101:{error.args}")
-        return None
+            print(f"ERROR 101: {error.args}")
+            return []
+
     def GET(self):
-        print(self.ListaContactos)
-        return render.lista_contactos()
+        contactos = self.obtenerContactos()
+        return render.lista_contactos(contactos)
