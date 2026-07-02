@@ -1,5 +1,41 @@
 import web
-render=web.template.render('views')
+import sqlite3
+render=web.template.render('views', base='layout')
 class Borrar_contacto():
-    def GET(self):
-        return render.borrar_contacto()
+    def borrarContacto(self, id_contacto:int):
+        try:
+            conexion = sqlite3.connect("sql/agenda.sqlite")
+            conexion.row_factory = sqlite3.Row
+            cursor = conexion.cursor()
+            query = "SELECT * FROM contacto where id_contacto = ?;"
+            cursor.execute(query,(id_contacto,))
+            resultado = cursor.fetchone()
+
+            contacto = {
+                "id_contacto":resultado[0],
+                "nombre":resultado[1],
+                "primer_apellido":resultado[2],
+                "segundo_apellido":resultado[3],
+                "email":resultado[4],
+                "telefono":resultado[5]
+                }
+
+            conexion.close()
+            print(contacto)
+            return contacto
+        except sqlite3.Error as error:
+            print(f"ERROR 102: {error.args}")
+            return []
+        except Exception as error:
+            print(f"ERROR 103: {error.args}")
+            return []
+    def GET(self, id_contacto):
+        print(f"id contacto: {id_contacto}")
+        contacto=self.borrarContacto(id_contacto)
+        id=contacto['id_contacto']
+        name=contacto['nombre']
+        f_lastname=contacto['primer_apellido']
+        s_lastname=contacto['segundo_apellido']
+        email=contacto['email']
+        tel=contacto['telefono']
+        return render.borrar_contacto(contacto,id,name,f_lastname,s_lastname,email,tel)
