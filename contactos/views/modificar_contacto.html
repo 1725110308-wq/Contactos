@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>hola</h1>
-</body>
-</html>
+$def with (contacto, id, name, f_lastname, s_lastname,email,tel)
+<form action="POST">
+    <label>ID</label> <input type="text" name="id" id="" value=$id readonly> <br>
+    <label>Nombre</label> <input type="text" name="name" id="" value=$name readonly> <br>
+    <label>Primer apellido</label> <input type="text" name="f_lastname" id="" value=$f_lastname readonly> <br>
+    <label>Segundo apellido</label> <input type="text" name="s_lastname" value=$s_lastname readonly> <br>
+    <label>Email</label> <input type="text" name="email" value=$email readonly> <br>
+    <label>Telefono</label> <input type="text" name="tel" value=$tel readonly> <br>
+</form>
+<a href="/"><button>regresar</button></a>
