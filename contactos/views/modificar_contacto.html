@@ -1,11 +1,35 @@
-$def with (contacto, id, name, f_lastname, s_lastname,email,tel)
-<form action="post">
-    <label>ID</label> <input type="text" name="id" id="" value=$id> <br>
-    <label>Nombre</label> <input type="text" name="name" id="" value=$name> <br>
-    <label>Primer apellido</label> <input type="text" name="f_lastname" id="" value=$f_lastname> <br>
-    <label>Segundo apellido</label> <input type="text" name="s_lastname" value=$s_lastname> <br>
-    <label>Email</label> <input type="text" name="email" value=$email> <br>
-    <label>Telefono</label> <input type="text" name="tel" value=$tel> <br>
-    
-</form>
-<a href="/"><button>regresar</button></a><button>editar</button>
+$def with(contacto)
+<title>Editar contacto</title>
+<form method="POST">
+<h1>Editar contacto</h1>
+    <label>ID</label>
+    <input type="text"  name="id_contacto"
+        value="$contacto['id_contacto']"  readonly><br>
+
+    <label>Nombre</label>
+    <input type="text" name="nombre"
+        value="$contacto['nombre']"  ><br>
+
+    <label>Primer Apellido</label>
+    <input type="text" name="primer_apellido"
+        value="$contacto['primer_apellido']" ><br>
+
+    <label>Segundo Apellido</label>
+    <input type="text" name="segundo_apellido"
+        value="$contacto['segundo_apellido']"  ><br>
+
+    <label>Email</label>
+    <input type="text" name="email"
+        value="$contacto['email']"  ><br>
+
+    <label>Teléfono</label>
+    <input type="text" name="telefono"
+        value="$contacto['telefono']"  ><br>
+
+
+    <br><button name="editar">Editar</button>
+
+</form><br><br>
+
+<a href="/lista_contactos"><button>Regresar Lista Contactos</button></a><br><br>
+<a href="/"><button>Regresar inicio</button></a><br>
