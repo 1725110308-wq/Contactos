@@ -1,5 +1,32 @@
 import web
-render=web.template.render('views')
+import sqlite3
+render=web.template.render('views',layout='layout')
+def buscarContacto(self, id_contacto: int):
+        try:
+            conexion = sqlite3.connect("sql/agenda.sqlite")
+            conexion.row_factory = sqlite3.Row
+            cursor = conexion.cursor()
+            query = "SELECT * FROM contacto WHERE id_contacto = ?"
+            cursor.execute(query, (id_contacto,))
+            resultado = cursor.fetchone()
+
+            contacto = {
+                "id_contacto": resultado[0],
+                "nombre": resultado[1],
+                "primer_apellido": resultado[2],
+                "segundo_apellido": resultado[3],
+                "email": resultado[4],
+                "telefono": resultado[5],
+            }
+            conexion.close()
+            print(contacto)
+            return contacto
+        except sqlite3.Error as error:
+            print(f"ERROR 102: {error.args}")
+            return {}
+        except Exception as error:
+            print(f"ERROR 103: {error.args}")
+            return {}
 class Insertar_contacto():
     def GET(self):
         return render.insertar_contacto()
