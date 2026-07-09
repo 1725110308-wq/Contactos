@@ -27,7 +27,14 @@ class Modificar_contacto:
                 telefono = ?
                 WHERE id_contacto = ?;
                 """
-            cursor.execute(query,(nombre,primer_apellido,segundo_apellido,email,telefono,id_contacto,))
+            datos=(nombre,
+                   primer_apellido,
+                   segundo_apellido,
+                   email,
+                   telefono,
+                   id_contacto
+                )
+            cursor.execute(query,datos)
             conexion.commit()
             return True
         except sqlite3.Error as error:

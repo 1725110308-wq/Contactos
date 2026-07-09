@@ -13,12 +13,6 @@ class Borrar_contacto:
             cursor = conexion.cursor()
 
             id_contacto = contacto["id_contacto"]
-            nombre = contacto["nombre"]
-            primer_apellido = contacto["primer_apellido"]
-            segundo_apellido = contacto["segundo_apellido"]
-            email = contacto["email"]
-            telefono = contacto["telefono"]
-
             query = """DELETE FROM contacto
                         WHERE id_contacto = ?
                 """

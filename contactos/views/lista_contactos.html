@@ -19,9 +19,9 @@ $def with(contactos)
             <td>$contacto['primer_apellido']</td>
             <td>$contacto['segundo_apellido']</td>
             <td>$contacto['email']</td>
-            <td>$contacto['telefono']</td>
-            <td><a href="/ver_contacto/$contacto['id_contacto']">ver</a></td>
-            <td><a href="/modificar_contacto/$contacto['id_contacto']">editar</a></td>
-            <td><a href="/borrar_contacto/$contacto['id_contacto']">borrar</a></td>
+            <td>$contacto['telefono']
+            <td><a href="/ver_contacto/$contacto['id_contacto']"><button>ver</button></a>
+            <a href="/modificar_contacto/$contacto['id_contacto']"><button>editar</button></a>
+            <a href="/borrar_contacto/$contacto['id_contacto']"><button>borrar</button></a></td>
         </tr>
 </table>
