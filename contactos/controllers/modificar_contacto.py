@@ -87,5 +87,7 @@ class Modificar_contacto:
             "telefono":formulario['telefono']
         }
         resultado = self.actualizarContacto(contacto)
-        return resultado
+        web.ctx.status = '303 See Other'
+        web.header('Location', '/lista_contactos')
+        return ''
         #raise web.seeother('/lista_contactos')
