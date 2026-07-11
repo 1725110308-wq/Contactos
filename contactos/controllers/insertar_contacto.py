@@ -1,7 +1,7 @@
 import web
 import sqlite3
 render = web.template.render('views', base='layout')
-class Insertar_contacto():
+class InsertarContacto():
     def insertarContacto(self,contacto:dict)->bool:
         try:
             conexion = sqlite3.connect("sql/agenda.sqlite")

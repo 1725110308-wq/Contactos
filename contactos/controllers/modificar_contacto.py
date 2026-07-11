@@ -4,7 +4,7 @@ import sqlite3
 render = web.template.render("views", base="layout")
 
 
-class Modificar_contacto:
+class ModificarContacto:
 
     def actualizarContacto(self, contacto: dict) -> bool:
         try:

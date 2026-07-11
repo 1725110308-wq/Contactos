@@ -4,7 +4,7 @@ import sqlite3
 render = web.template.render("views", base="layout")
 
 
-class Borrar_contacto:
+class BorrarContacto:
 
     def eliminarContacto(self, contacto: dict) -> bool:
         try:
@@ -69,5 +69,7 @@ class Borrar_contacto:
             "telefono":formulario['telefono']
         }
         resultado = self.eliminarContacto(contacto)
-        return resultado
+        web.ctx.status = '303 See Other'
+        web.header('Location', '/lista_contactos')
+        return ''
         #raise web.seeother('/lista_contactos')

@@ -1,7 +1,7 @@
 import web
 import sqlite3
 render = web.template.render('views', base='layout')
-class Ver_contactos():
+class VerContactos():
     def buscarContacto(self, id_contacto:int):
         try:
             conexion = sqlite3.connect("sql/agenda.sqlite")
